@@ -44,7 +44,7 @@ export const Confirm = () => {
           <div>{state.about}</div>
         </SectionRow>
       </Section>
-      <div className="clo-md-12 d-flex justify-content-start">
+      <div className="d-flex justify-content-start">
         <Button>Submit</Button>
       </div>
     </Form>
