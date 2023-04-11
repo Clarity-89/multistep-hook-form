@@ -1,0 +1,158 @@
+$warning: #ffc107;
+$success: green;
+
+.App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 24px;
+    width: 600px;
+    margin: 0 auto;
+}
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 600px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.section-row {
+    display: flex;
+    width: 100%;
+
+    div {
+        display: flex;
+        margin-bottom: 0.5rem;
+
+        &:first-child {
+            width: 50%;
+        }
+
+        &:last-child {
+            width: 50%;
+        }
+    }
+}
+
+.title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+form {
+    width: 100%;
+}
+
+.submit-form {
+    display: flex;
+    margin: 24px 0 auto 0;
+}
+
+a.active {
+    color: red;
+}
+
+.stepper {
+    display: flex;
+    padding: 24px;
+    width: 100%;
+
+    ol {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+.error {
+    display: flex;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: .875em;
+    color: #dc3545;
+}
+
+label {
+    display: flex;
+}
+
+.button-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+@mixin round($color) {
+    border-radius: 50%;
+    width: 1.1em;
+    height: 1.1em;
+    padding: 0.25em;
+    background: #fff;
+    text-align: center;
+    font-size: 18px;
+    line-height: 0.5;
+    font-weight: bold;
+    border: 0.1em solid $color;
+    color: $color;
+    margin-right: 6px;
+}
+
+.warning-sign {
+    @include round($warning);
+}
+
+.success-sign {
+    @include round($success);
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+}
+
+.checkmark {
+    display:inline-block;
+    width: 22px;
+    height:22px;
+    transform: rotate(45deg);
+    margin-right: 6px;
+}
+
+.circle {
+    position: absolute;
+    width:22px;
+    height:22px;
+    background-color: green;
+    border-radius:11px;
+    left:0;
+    top:0;
+}
+
+.stem {
+    position: absolute;
+    width:3px;
+    height:9px;
+    background-color:#fff;
+    left:11px;
+    top:6px;
+}
+
+.tick {
+    position: absolute;
+    width:3px;
+    height:3px;
+    background-color:#fff;
+    left:8px;
+    top:12px;
+}

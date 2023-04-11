@@ -30,3 +30,19 @@ export const Stepper = () => {
     </nav>
   );
 };
+
+const StepState = ({ showWarning, showSuccess }) => {
+  if (showWarning) {
+    return <span className={"warning-sign"}>!</span>;
+  } else if (showSuccess) {
+    return (
+      <div className="checkmark">
+        <div className="circle"></div>
+        <div className="stem"></div>
+        <div className="tick"></div>
+      </div>
+    );
+  } else {
+    return null;
+  }
+};
