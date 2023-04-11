@@ -1,9 +1,10 @@
+import { forwardRef } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAppState } from "../state";
 import { Button, Field, Form, Input } from "../Forms";
 
-export const Contact = () => {
+export const Contact = forwardRef((props, ref) => {
   const [state, setState] = useAppState();
   const {
     handleSubmit,
@@ -60,8 +61,8 @@ export const Contact = () => {
             id="password-confirm"
           />
         </Field>
-        <Button>Next {">"}</Button>
+        <Button ref={ref}>Next {">"}</Button>
       </fieldset>
     </Form>
   );
-};
+});

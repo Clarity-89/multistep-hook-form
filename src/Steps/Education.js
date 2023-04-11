@@ -2,8 +2,9 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAppState } from "../state";
 import { Button, Field, Form, Input } from "../Forms";
+import { forwardRef } from "react";
 
-export const Education = () => {
+export const Education = forwardRef((props, ref) => {
   const [state, setState] = useAppState();
   const { handleSubmit, register } = useForm({ defaultValues: state });
   const navigate = useNavigate();
@@ -27,9 +28,9 @@ export const Education = () => {
           <Button variant="secondary" onClick={() => navigate("/")}>
             {"<"} Previous
           </Button>
-          <Button>Next {">"}</Button>
+          <Button ref={ref}>Next {">"}</Button>
         </div>
       </fieldset>
     </Form>
   );
-};
+});
