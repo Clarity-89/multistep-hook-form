@@ -1,30 +1,77 @@
-import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
+import { useAppState } from "../state";
 
-export const Stepper = () => {
+export const Stepper = ({ onStepChange }) => {
+  const [state] = useAppState();
   const location = useLocation();
+  const [steps, setSteps] = useState([]);
 
-  const getLinkClass = (path) => {
-    return (
-      "nav-link disabled " + (path === location.pathname ? "active" : undefined)
-    );
-  };
+  useEffect(() => {
+    setSteps((steps) => [...steps, location.pathname]);
+  }, [location]);
+
+  const getLinkClass = ({ isActive }) =>
+    `nav-link ${isActive ? "active" : undefined}`;
+
+  const contactInfoMissing =
+    !state.firstName || !state.email || !state.password;
+
+  const isVisited = (step) =>
+    steps.includes(step) && location.pathname !== step;
+
+  const navLinks = [
+    {
+      url: "/",
+      name: "Contact",
+      state: {
+        showWarning: isVisited("/") && contactInfoMissing,
+        showSuccess: isVisited("/") && !contactInfoMissing,
+      },
+    },
+    {
+      url: "/education",
+      name: "Education",
+      state: {
+        showSuccess: isVisited("/education"),
+      },
+    },
+    {
+      url: "/about",
+      name: "About",
+      state: {
+        showSuccess: isVisited("/about"),
+      },
+    },
+    {
+      url: "/confirm",
+      name: "Confirm",
+      state: {},
+    },
+  ];
 
   return (
     <nav className="stepper navbar navbar-expand-lg">
       <div className="collapse navbar-collapse">
         <ol className="navbar-nav">
-          <li className="step nav-item">
-            <span className={getLinkClass("/")}>Contact</span>
-          </li>
-          <li className="step nav-item">
-            <span className={getLinkClass("/education")}>Education</span>
-          </li>
-          <li className="step nav-item">
-            <span className={getLinkClass("/about")}>About</span>
-          </li>
-          <li className="step nav-item">
-            <span className={getLinkClass("/confirm")}>Confirm</span>
-          </li>
+          {navLinks.map(({ url, name, state }) => {
+            return (
+              <li className="step nav-item" key={url}>
+                <StepState
+                  showWarning={state.showWarning}
+                  showSuccess={state.showSuccess}
+                />
+                <NavLink
+                  end
+                  to={url}
+                  className={getLinkClass}
+                  onClick={onStepChange}
+                >
+                  {name}
+                </NavLink>
+              </li>
+            );
+          })}
         </ol>
       </div>
     </nav>
