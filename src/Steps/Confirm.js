@@ -17,7 +17,7 @@ export const Confirm = () => {
       url: "/",
       items: [
         { name: "First name", value: state.firstName, required: true },
-        { name: "Last name", value: state.lastName },
+        { name: "Last name", value: state.lastName, required: true },
         { name: "Email", value: state.email, required: true },
         {
           name: "Password",

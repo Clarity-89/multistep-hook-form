@@ -11,7 +11,7 @@ export const App = () => {
   const buttonRef = useRef();
 
   const onStepChange = () => {
-    buttonRef.current.click();
+    //buttonRef.current?.click();
   };
 
   return (
