@@ -30,7 +30,10 @@ export const Contact = () => {
           />
         </Field>
         <Field label="Last name" error={errors?.lastName}>
-          <Input {...register("lastName")} id="last-name" />
+          <Input
+            {...register("lastName", { required: "Last name is required" })}
+            id="last-name"
+          />
         </Field>
         <Field label="Email" error={errors?.email}>
           <Input
