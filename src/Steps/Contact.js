@@ -2,10 +2,15 @@ import { forwardRef } from "react";
 import { useForm } from "react-hook-form";
 import { useAppState } from "../state";
 import { Button, Field, Form, Input } from "../Forms";
+import { FormPrompt } from "../FormPrompt";
 
 export const Contact = forwardRef((props, ref) => {
   const [state, setState] = useAppState();
-  const { handleSubmit, register } = useForm({
+  const {
+    handleSubmit,
+    register,
+    formState: { isDirty },
+  } = useForm({
     defaultValues: state,
     mode: "onSubmit",
   });
@@ -16,6 +21,7 @@ export const Contact = forwardRef((props, ref) => {
 
   return (
     <Form onSubmit={handleSubmit(saveData)} nextStep={"/education"}>
+      <FormPrompt hasUnsavedChanges={isDirty} />
       <fieldset>
         <legend>Contact</legend>
         <Field label="First name">

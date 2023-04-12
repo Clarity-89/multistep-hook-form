@@ -22,7 +22,7 @@ export const Stepper = ({ onStepChange }) => {
 
   const navLinks = [
     {
-      url: "/",
+      url: "/contact",
       name: "Contact",
       state: {
         showWarning: isVisited("/") && contactInfoMissing,
@@ -51,30 +51,35 @@ export const Stepper = ({ onStepChange }) => {
   ];
 
   return (
-    <nav className="stepper navbar navbar-expand-lg">
-      <div className="collapse navbar-collapse">
-        <ol className="navbar-nav">
-          {navLinks.map(({ url, name, state }) => {
-            return (
-              <li className="step nav-item" key={url}>
-                <StepState
-                  showWarning={state.showWarning}
-                  showSuccess={state.showSuccess}
-                />
-                <NavLink
-                  end
-                  to={url}
-                  className={getLinkClass}
-                  onClick={onStepChange}
-                >
-                  {name}
-                </NavLink>
-              </li>
-            );
-          })}
-        </ol>
-      </div>
-    </nav>
+    <>
+      <nav className="stepper navbar navbar-expand-lg">
+        <div className="collapse navbar-collapse">
+          <ol className="navbar-nav">
+            <NavLink to={"/"} className={getLinkClass}>
+              Home
+            </NavLink>
+            {navLinks.map(({ url, name, state }) => {
+              return (
+                <li className="step nav-item" key={url}>
+                  <StepState
+                    showWarning={state.showWarning}
+                    showSuccess={state.showSuccess}
+                  />
+                  <NavLink
+                    end
+                    to={url}
+                    className={getLinkClass}
+                    onClick={onStepChange}
+                  >
+                    {name}
+                  </NavLink>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+      </nav>
+    </>
   );
 };
 
