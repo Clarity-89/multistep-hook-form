@@ -1,12 +1,17 @@
+import { forwardRef } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { useAppState } from "../state";
 import { Button, Field, Form } from "../Forms";
-import { forwardRef } from "react";
+import { FormPrompt } from "../FormPrompt";
 
 export const About = forwardRef((props, ref) => {
   const [state, setState] = useAppState();
-  const { handleSubmit, register } = useForm({ defaultValues: state });
+  const {
+    handleSubmit,
+    register,
+    formState: { isDirty },
+  } = useForm({ defaultValues: state });
 
   const saveData = (data) => {
     setState({ ...state, ...data });
@@ -14,6 +19,7 @@ export const About = forwardRef((props, ref) => {
 
   return (
     <Form onSubmit={handleSubmit(saveData)} nextStep={"/confirm"}>
+      <FormPrompt hasUnsavedChanges={isDirty} />
       <fieldset>
         <legend>About</legend>
         <Field label="About me">
