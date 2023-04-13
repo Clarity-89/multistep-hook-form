@@ -1,3 +1,6 @@
+/**
+ * Example of the FormPrompt component using React Router v5
+ */
 import { useEffect } from "react";
 import { Prompt } from "react-router-dom";
 
