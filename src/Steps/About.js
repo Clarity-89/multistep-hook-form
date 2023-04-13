@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAppState } from "../state";
 import { Button, Field, Form } from "../Forms";
 
@@ -25,9 +25,9 @@ export const About = () => {
           />
         </Field>
         <div className="button-row">
-          <Button variant="secondary" onClick={() => navigate("/education")}>
+          <Link className={`btn btn-secondary`} to="/education">
             {"<"} Previous
-          </Button>
+          </Link>
           <Button>Next {">"}</Button>
         </div>
       </fieldset>
